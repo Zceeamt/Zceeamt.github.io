@@ -36,7 +36,7 @@ window.SITE = {
   about: [
     "I'm a third-year Electronic and Electrical Engineering student at UCL.",
     "I work on embedded hardware: multilayer PCBs, microcontrollers, FPGAs and power electronics. I like taking a project from schematic to a board that actually works, whether that means flying a drone, driving a motor or streaming data.",
-    "I also co-founded Iris Cybernetics, a small robotics start-up, where I lead the hardware."
+    "My interests span embedded systems, digital design and power electronics, with a particular interest in robotics."
   ]
 };
 
