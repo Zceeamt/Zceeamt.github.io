@@ -29,7 +29,7 @@ window.SITE = {
   // Leave any of these as "" to hide it.
   email: "abdulamt026@icloud.com",
   github: "https://github.com/Zceeamt",
-  linkedin: "",   // Add the exact profile URL when available
+  linkedin: "https://www.linkedin.com/in/abdulhakim-amtouti-85b795283/",
   phone: "+44 7576 065599",
   cv: "",
 

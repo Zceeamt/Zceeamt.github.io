@@ -19,6 +19,7 @@ KiCad · STM32 · SystemVerilog · Quartus Prime · Betaflight · Fusion 360 · 
 
 - Email: [abdulamt026@icloud.com](mailto:abdulamt026@icloud.com)
 - GitHub: [@Zceeamt](https://github.com/Zceeamt)
+- LinkedIn: [Abdulhakim Amtouti](https://www.linkedin.com/in/abdulhakim-amtouti-85b795283/)
 
 ## Repository structure
 
