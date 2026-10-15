@@ -274,7 +274,7 @@ window.PROJECTS = [
       {
         heading: "How it works",
         text: [
-          "A top-level module binds the RTL to the device pins, distributing the 50 MHz oscillator and reset and driving the serial output onto a GPIO header.",
+          "A top-level module binds the RTL to the device pins, distributes the 50 MHz oscillator and drives the serial output onto a GPIO header. Reset is held inactive within the design rather than assigned to an external FPGA pin.",
           "Within the transmitter, a parameterised counter divides the system clock to the bit period: approximately 5,208 cycles per bit at 9600 baud, a rate error below 0.01%. As the link is asynchronous, this precision alone keeps transmitter and receiver aligned across each frame.",
           "Data is serialised in standard 8N1 framing: a start bit, eight data bits least significant first, and a stop bit. A finite-state machine sequences the ASCII characters A to Z, loading the next character on completion of each frame to produce a continuous test pattern."
         ]
@@ -282,7 +282,7 @@ window.PROJECTS = [
       {
         heading: "Synthesis and pin assignment",
         text: [
-          "The design was synthesised and fitted in Intel Quartus Prime, with clock, reset and serial I/O constrained to the EP4CE22F17C6's package pins through the Pin Planner."
+          "The design was synthesised and fitted in Intel Quartus Prime, with the clock and serial I/O constrained to the EP4CE22F17C6's package pins through the Pin Planner; reset remains held inactive in the RTL."
         ],
         media: [
           { src: "assets/img/uart/pin-planner.jpg", caption: "Pin Planner for the EP4CE22F17C6" }
