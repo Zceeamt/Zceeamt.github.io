@@ -127,6 +127,10 @@ window.PROJECTS = [
         ],
         media: [
           [
+            { src: "assets/img/quadcopter/pcb-powered-1.png", alt: "Flight-controller PCB powered over USB-C with the red power LED illuminated", caption: "First power-up over USB-C: power LED (red)" },
+            { src: "assets/img/quadcopter/pcb-powered-2.png", alt: "Flight-controller PCB powered over USB-C with the red power LED and green MCU status LED illuminated", caption: "Firmware running from USB power: power LED (red) and MCU status LED (green)" }
+          ],
+          [
             { src: "assets/img/quadcopter/betaflight-1.jpg", caption: "Betaflight recognising the board" },
             { src: "assets/img/quadcopter/betaflight-2.jpg", caption: "The model following the board's orientation" }
           ],
