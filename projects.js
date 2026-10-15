@@ -27,20 +27,23 @@ window.SITE = {
   location: "London",
 
   // Leave any of these as "" to hide it.
-  email: "",      // e.g. "name@example.com"
+  email: "abdulamt026@icloud.com",
   github: "https://github.com/Zceeamt",
-  linkedin: "",   // e.g. "https://www.linkedin.com/in/yourname"
-  cv: "",         // e.g. "assets/cv.pdf" (upload the PDF into assets/)
+  linkedin: "",   // Add the exact profile URL when available
+  phone: "+44 7576 065599",
+  cv: "",
 
   about: [
-    "I am a third-year student of Electronic and Electrical Engineering at UCL.",
-    "I am drawn to engineering that bridges the digital and the physical, from embedded systems and robotics to digital design on FPGAs and power electronics. I enjoy carrying an idea from first principles through to working hardware, and the projects here reflect that breadth."
+    "I'm a third-year Electronic and Electrical Engineering student at UCL.",
+    "I work on embedded hardware: multilayer PCBs, microcontrollers, FPGAs and power electronics. I like taking a project from schematic to a board that actually works, whether that means flying a drone, driving a motor or streaming data.",
+    "I also co-founded Iris Cybernetics, a small robotics start-up, where I lead the hardware."
   ]
 };
 
 window.PROJECTS = [
   {
     id: "quadcopter",
+    file: "quadcopter.exe",
     title: "Custom quadcopter and flight controller",
     year: "2026",
     type: "Hardware",
@@ -155,11 +158,14 @@ window.PROJECTS = [
     ],
 
     gallery: [],
-    links: []
+    links: [
+      { label: "View on GitHub", url: "https://github.com/Zceeamt/custom-stm32-drone-flight-controller" }
+    ]
   },
 
   {
     id: "esc",
+    file: "bldc_esc.exe",
     title: "Brushless motor speed controller",
     year: "2026",
     type: "Hardware",
@@ -234,11 +240,14 @@ window.PROJECTS = [
     ],
 
     gallery: [],
-    links: []
+    links: [
+      { label: "View on GitHub", url: "https://github.com/Zceeamt/four-layer-bldc-esc" }
+    ]
   },
 
   {
     id: "fpga-uart",
+    file: "uart_tx.sv",
     title: "UART transmitter on an FPGA",
     year: "2026",
     type: "Digital hardware",
@@ -305,11 +314,14 @@ window.PROJECTS = [
     ],
 
     gallery: [],
-    links: []
+    links: [
+      { label: "View on GitHub", url: "https://github.com/Zceeamt/fpga-uart-transmitter" }
+    ]
   },
 
   {
     id: "power-supply",
+    file: "dc_dc_supply.exe",
     title: "Dual-output DC-DC power supply",
     year: "2026",
     type: "Power electronics",
@@ -394,7 +406,9 @@ window.PROJECTS = [
     ],
 
     gallery: [],
-    links: []
+    links: [
+      { label: "View on GitHub", url: "https://github.com/Zceeamt/dual-output-dc-dc-power-supply" }
+    ]
   }
 
   /*

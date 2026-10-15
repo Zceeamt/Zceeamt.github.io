@@ -54,12 +54,25 @@
     return svg;
   }
 
+  // A retro OS window: navy title bar with a filename, then the body.
+  function win(title, cls, body, tag, attrs) {
+    attrs = attrs || {};
+    attrs.class = "win" + (cls ? " " + cls : "");
+    return el(tag || "div", attrs,
+      el("div", { class: "win-bar" },
+        el("span", { class: "win-title", text: title }),
+        el("span", { class: "win-ctrls", "aria-hidden": "true" }, el("span"), el("span"))),
+      el("div", { class: "win-body" }, body));
+  }
+  function fileName(p) { return p.file || (p.id + ".exe"); }
+
   /* ---------- contact ---------- */
-  function hasContact() { return !!(SITE.email || SITE.github || SITE.linkedin || SITE.cv); }
+  function hasContact() { return !!(SITE.email || SITE.phone || SITE.github || SITE.linkedin || SITE.cv); }
   function contactItems(includeLocation) {
     var items = [];
     if (includeLocation && SITE.location) items.push(el("li", { class: "plain", text: SITE.location }));
     if (SITE.email) items.push(el("li", null, el("a", { class: "link", href: "mailto:" + SITE.email, text: SITE.email })));
+    if (SITE.phone) items.push(el("li", null, el("a", { class: "link", href: "tel:" + SITE.phone.replace(/\s/g, ""), text: SITE.phone })));
     if (SITE.github) items.push(el("li", null, el("a", { class: "link", href: SITE.github, target: "_blank", rel: "noopener", text: "GitHub" })));
     if (SITE.linkedin) items.push(el("li", null, el("a", { class: "link", href: SITE.linkedin, target: "_blank", rel: "noopener", text: "LinkedIn" })));
     if (SITE.cv) items.push(el("li", null, el("a", { class: "link", href: SITE.cv, target: "_blank", rel: "noopener", text: "CV (PDF)" })));
@@ -190,15 +203,16 @@
 
   /* ---------- home ---------- */
   function card(p) {
-    return el("a", { class: "card", href: "#" + p.id, id: "card-" + p.id },
+    return win(fileName(p), "card", [
       el("div", { class: "card-media" },
         p.cover ? el("img", { src: p.cover, alt: "", decoding: "async" }) : null),
       el("div", null,
         el("h3", { text: p.title }),
         p.summary ? el("p", { text: p.summary }) : null,
         el("div", { class: "meta" },
-          p.year ? el("span", { text: p.year }) : null,
-          p.type ? el("span", { text: p.type }) : null)));
+          p.type ? el("span", { class: "chip", text: p.type }) : null,
+          p.year ? el("span", { class: "chip", text: p.year }) : null))
+    ], "a", { href: "#" + p.id, id: "card-" + p.id });
   }
 
   function renderHome() {
@@ -207,24 +221,29 @@
     var nameParts = (SITE.name || "").split(" ");
 
     fill(app,
-      el("section", { class: "intro" },
-        el("h1", { class: "display" }, nameParts.map(function (part) { return el("span", { text: part }); })),
-        SITE.tagline ? el("p", { class: "tagline", text: SITE.tagline }) : null,
-        el("ul", { class: "contact-links" }, contactItems(true))),
+      el("section", { class: "desk" },
+        el("div", { class: "sun", "aria-hidden": "true" }),
+        win("about_me.txt", "hero-win", [
+          el("h1", { class: "display" }, nameParts.map(function (part) { return el("span", { text: part }); })),
+          SITE.tagline ? el("p", { class: "tagline", text: SITE.tagline }) : null,
+          el("div", { class: "actions" },
+            el("a", { class: "btn btn-primary", href: "#projects", text: "Open projects" }),
+            SITE.github ? el("a", { class: "btn", href: SITE.github, target: "_blank", rel: "noopener", text: "GitHub" }) : null,
+            SITE.linkedin ? el("a", { class: "btn", href: SITE.linkedin, target: "_blank", rel: "noopener", text: "LinkedIn" }) : null)
+        ])),
 
       el("section", { class: "section", id: "projects", "aria-labelledby": "projects-title" },
-        el("h2", { class: "section-title", id: "projects-title", text: "Projects" }),
+        el("div", { class: "section-head" },
+          el("h2", { class: "section-title", id: "projects-title", text: "Projects" }),
+          el("span", { class: "section-sub", text: PROJECTS.length + " items" })),
         el("div", { class: "grid" }, PROJECTS.map(card))),
 
-      has(SITE.about) ? el("section", { class: "section split", id: "about", "aria-labelledby": "about-title" },
-        el("h2", { class: "section-title", id: "about-title", text: "About" }),
-        el("div", { class: "prose" }, SITE.about.map(function (t) { return el("p", { text: t }); }))) : null,
-
-      hasContact() ? el("section", { class: "section split", id: "contact", "aria-labelledby": "contact-title" },
-        el("h2", { class: "section-title", id: "contact-title", text: "Contact" }),
-        el("div", { class: "prose" },
-          el("p", { text: SITE.email ? "Email is the quickest way to reach me." : "You can find me here:" }),
-          el("ul", { class: "contact-links" }, contactItems(false)))) : null
+      has(SITE.about) || hasContact() ? el("section", { class: "section", id: "about", "aria-labelledby": "about-title" },
+        el("div", { class: "section-head" },
+          el("h2", { class: "section-title", id: "about-title", text: "About" })),
+        win("readme.md", "about-win", el("div", { class: "prose", id: "contact" },
+          has(SITE.about) ? SITE.about.map(function (t) { return el("p", { text: t }); }) : null,
+          el("ul", { class: "contact-links" }, contactItems(true))))) : null
     );
   }
 
@@ -249,8 +268,9 @@
     var next = PROJECTS.length > 1 ? PROJECTS[(i + 1) % PROJECTS.length] : null;
 
     fill(app, el("article", { class: "project" },
-      el("a", { class: "back", href: "#projects" }, arrowLeft(), "All projects"),
+      el("a", { class: "btn back", href: "#projects" }, arrowLeft(), "All projects"),
 
+      win(fileName(p), "project-win", [
       el("header", { class: "project-head" },
         el("h1", { class: "project-title", tabindex: "-1", text: p.title }),
         p.intro ? el("p", { class: "lead", text: p.intro }) : null),
@@ -276,7 +296,8 @@
 
       has(p.links) ? block("Links", el("ul", { class: "link-list" }, p.links.map(function (l) {
         return el("li", null, el("a", { class: "link", href: l.url, target: "_blank", rel: "noopener", text: l.label }));
-      }))) : null,
+      }))) : null
+      ]),
 
       next ? el("nav", { class: "pager", "aria-label": "More projects" },
         el("a", { href: "#" + next.id }, el("small", { text: "Next project" }), el("span", { text: next.title }))) : null
@@ -372,11 +393,9 @@
   /* ---------- start ---------- */
   document.getElementById("copyright").textContent = "© " + new Date().getFullYear() + " " + (SITE.name || "");
   document.getElementById("brand").textContent = SITE.name || "Portfolio";
-  if (!hasContact()) {
-    var contactNav = document.querySelector("[data-needs-contact]");
-    if (contactNav) contactNav.hidden = true;
-  }
-  if (!has(SITE.about)) {
+  var contactNav = document.querySelector("[data-needs-contact]");
+  if (contactNav) contactNav.hidden = true; // contact details live in the About window
+  if (!has(SITE.about) && !hasContact()) {
     var aboutLink = document.querySelector('.nav a[href="#about"]');
     if (aboutLink) aboutLink.parentNode.hidden = true;
   }
