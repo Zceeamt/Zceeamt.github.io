@@ -52,7 +52,7 @@ window.PROJECTS = [
     cover: "assets/img/quadcopter/cover.jpg",
 
     intro:
-      "End-to-end development of a quadcopter around a bespoke flight controller. The four-layer board combines an STM32H743 processor with a six-axis inertial measurement unit and a barometric pressure sensor. The project spans schematic capture and layout in KiCad, fabrication, hardware bring-up in Betaflight and an airframe designed in Fusion 360, culminating in a successful outdoor flight.",
+      "End-to-end development of a quadcopter around a bespoke flight controller. The four-layer board combines an STM32H743 processor with a six-axis inertial measurement unit and a barometric pressure sensor. Following fabrication and hardware bring-up, I flashed and configured the assembled PCB using Betaflight, integrated it into an airframe designed in Fusion 360 and completed a successful outdoor flight.",
 
     facts: [
       ["Year", "2026"],
@@ -119,7 +119,7 @@ window.PROJECTS = [
         steps: [
           "Visual inspection of the assembled board for fabrication and soldering defects.",
           "Verification of the power rails prior to any further connection.",
-          "Enumeration over USB-C and confirmation of firmware communication in Betaflight.",
+          "Flashing and configuring the assembled flight controller using Betaflight, followed by USB-C enumeration and firmware communication checks.",
           "Validation of IMU response and board orientation against Betaflight's live attitude model.",
           "ESC integration and mapping of each motor output to its physical position.",
           "Airframe integration, with motor direction and propeller orientation confirmed.",
