@@ -170,20 +170,20 @@ window.PROJECTS = [
   {
     id: "esc",
     file: "bldc_esc.exe",
-    title: "Brushless motor speed controller",
+    title: "AM32 brushless motor speed controller PCB",
     year: "2026",
     type: "Hardware",
     summary:
-      "A four-layer sensorless BLDC speed-controller design based on an STM32F051 and a DRV8300 three-phase gate driver.",
+      "A complex four-layer PCB implementation of the AM32 sensorless BLDC ESC reference design, centred on an STM32F051 and DRV8300 three-phase gate driver.",
     cover: "assets/img/esc/render-top.jpg",
 
     intro:
-      "Design of a sensorless electronic speed controller for brushless DC motors in small unmanned aircraft. An STM32F051 performs commutation, a DRV8300 drives a six-MOSFET three-phase bridge, and dedicated circuitry senses back-EMF, phase current and supply voltage. The schematic and four-layer layout were developed in KiCad.",
+      "This project translates the AM32 reference schematic for a sensorless brushless-motor controller into a manufacturable four-layer PCB. My work focused on component placement, high-current power routing, mixed-signal separation, grounding and thermal management around the STM32F051, DRV8300 gate driver and six-MOSFET bridge.",
 
     facts: [
       ["Year", "2026"],
-      ["Role", "Schematic and PCB design"],
-      ["Status", "PCB design complete"],
+      ["Role", "Four-layer PCB implementation and routing from the AM32 reference schematic"],
+      ["Status", "PCB layout complete; design-only project"],
       ["Tools", "KiCad"]
     ],
 
@@ -196,18 +196,18 @@ window.PROJECTS = [
       {
         heading: "Power stage",
         text: [
-          "Six PSMN5R2-60YL MOSFETs form three half-bridges, one per phase, synthesising the commutated three-phase drive from the DC battery bus.",
-          "The DRV8300 gate driver uses bootstrap capacitors to supply the high-side gates, with 20 Ω series gate resistors to control switching edges and limit ringing. Seven 47 µF capacitors at the input form a low-impedance reservoir for the pulsed current drawn by the bridge."
+          "The adopted AM32 architecture uses six PSMN5R2-60YL MOSFETs as three half-bridges, one per motor phase, with a DRV8300 providing the high-side and low-side gate drive.",
+          "Routing the switching stage required short gate paths, wide phase and battery pours, controlled separation from sensitive signals and close placement of seven 47 µF bulk capacitors to contain the bridge's pulsed current demand."
         ]
       },
       {
         heading: "Control and sensing",
         text: [
-          "Rotor position is inferred without Hall sensors. Each phase voltage is attenuated into the STM32F051, and a resistor network synthesises a virtual neutral point; the zero-crossing of the undriven phase against this reference determines the commutation instant.",
-          "Phase current is measured through a 1 mΩ low-side shunt and an INA180 current-sense amplifier, and a resistive divider monitors the supply voltage. Two LM3480 regulators provide 5 V for the gate driver and 3.3 V for the logic, with a ferrite bead isolating the analogue supply. A throttle input, telemetry output, SWD and test points support integration and debugging."
+          "The reference circuitry infers rotor position from the zero-crossing of the undriven phase against a synthesised virtual neutral. These analogue paths were routed away from high-dv/dt switching nodes and returned to a stable ground reference.",
+          "The layout also accommodates a 1 mΩ shunt and INA180 current-sense amplifier, battery-voltage monitoring, separate 5 V and 3.3 V regulation, analogue-supply filtering, throttle, telemetry, SWD and dedicated test points."
         ],
         media: [
-          { src: "assets/img/esc/schematic.jpg", caption: "Schematic" }
+          { src: "assets/img/esc/schematic.jpg", caption: "AM32 reference schematic used for the PCB implementation" }
         ]
       },
       {
@@ -239,8 +239,8 @@ window.PROJECTS = [
     ],
 
     skills: [
-      "Power electronics", "Gate drivers", "MOSFET selection", "Brushless motor control",
-      "Current and voltage sensing", "Four-layer PCB layout", "Thermal design", "KiCad", "Design for manufacture"
+      "AM32 hardware architecture", "High-current PCB routing", "Mixed-signal placement",
+      "Four-layer stack-up", "Grounding", "Thermal-via design", "KiCad", "Design for manufacture"
     ],
 
     gallery: [],

@@ -7,7 +7,7 @@ Personal engineering portfolio for an Electronic and Electrical Engineering stud
 ## Featured projects
 
 - [Custom STM32 drone flight controller](https://github.com/Zceeamt/custom-stm32-drone-flight-controller) — four-layer STM32H743 flight-controller PCB, custom 3D-printed airframe, Betaflight bring-up and successful outdoor flight testing.
-- [Four-layer BLDC electronic speed controller](https://github.com/Zceeamt/four-layer-bldc-esc) — four-layer sensorless motor-controller design using an STM32F051, DRV8300 gate driver, MOSFET power stage and back-EMF sensing.
+- [AM32 sensorless BLDC ESC PCB layout](https://github.com/Zceeamt/four-layer-bldc-esc) — complex four-layer implementation of the AM32 reference schematic, with high-current routing, mixed-signal partitioning and thermal management.
 - [FPGA UART transmitter](https://github.com/Zceeamt/fpga-uart-transmitter) — SystemVerilog 8N1 UART transmitter on a Cyclone IV FPGA, verified against an Arduino receiver.
 - [Dual-output DC-DC power supply](https://github.com/Zceeamt/dual-output-dc-dc-power-supply) — MC34063A-based supply designed for a 5–12 V input range, with regulated 5 V and 12 V rails, current limiting and hardware verification.
 
