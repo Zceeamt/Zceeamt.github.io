@@ -175,7 +175,7 @@ window.PROJECTS = [
     type: "Hardware",
     summary:
       "A complex four-layer PCB implementation of the AM32 sensorless BLDC ESC reference design, centred on an STM32F051 and DRV8300 three-phase gate driver.",
-    cover: "assets/img/esc/render-top.jpg",
+    cover: "assets/img/esc/render-top.jpg?v=20261016-2",
 
     intro:
       "This project translates the AM32 reference schematic for a sensorless brushless-motor controller into a manufacturable four-layer PCB. My work focused on component placement, high-current power routing, mixed-signal separation, grounding and thermal management around the STM32F051, DRV8300 gate driver and six-MOSFET bridge.",
@@ -188,8 +188,8 @@ window.PROJECTS = [
     ],
 
     hero: [
-      { src: "assets/img/esc/render-top.jpg", alt: "3D render of the top side: six MOSFETs and the bulk capacitors", caption: "Top: power stage" },
-      { src: "assets/img/esc/render-bottom.jpg", alt: "3D render of the underside: microcontroller and gate driver", caption: "Bottom: control" }
+      { src: "assets/img/esc/render-top.jpg?v=20261016-2", alt: "3D render of the top side: six MOSFETs and the bulk capacitors", caption: "Top: power stage" },
+      { src: "assets/img/esc/render-bottom.jpg?v=20261016-2", alt: "3D render of the underside: microcontroller and gate driver", caption: "Bottom: control" }
     ],
 
     sections: [
@@ -217,10 +217,10 @@ window.PROJECTS = [
           "An array of 0.2 mm thermal vias beneath the gate driver's exposed pad conducts heat into the internal planes, and ground stitching maintains a low-impedance reference across all four layers. The design adheres to standard fabrication capabilities: 0.15 mm clearance and 0.3 mm vias on 0.6 mm pads."
         ],
         media: [
-          { src: "assets/img/esc/layout-top.jpg", caption: "Top layer (F.Cu)" },
-          { src: "assets/img/esc/layout-inner-1.jpg", caption: "Inner layer 1" },
-          { src: "assets/img/esc/layout-inner-2.jpg", caption: "Inner layer 2" },
-          { src: "assets/img/esc/layout-bottom.jpg", caption: "Bottom layer (B.Cu)" }
+          { src: "assets/img/esc/layout-top.jpg?v=20261016-2", caption: "Top layer (F.Cu)" },
+          { src: "assets/img/esc/layout-inner-1.jpg?v=20261016-2", caption: "Inner layer 1" },
+          { src: "assets/img/esc/layout-inner-2.jpg?v=20261016-2", caption: "Inner layer 2" },
+          { src: "assets/img/esc/layout-bottom.jpg?v=20261016-2", caption: "Bottom layer (B.Cu)" }
         ]
       }
     ],
