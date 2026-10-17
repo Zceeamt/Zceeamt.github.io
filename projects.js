@@ -79,10 +79,6 @@ window.PROJECTS = [
             { src: "assets/img/quadcopter/schematic.jpg", caption: "Schematic" }
           ],
           [
-            { src: "assets/img/quadcopter/kicad-3d-top.jpg", caption: "3D render, top" },
-            { src: "assets/img/quadcopter/kicad-3d-bottom.jpg", caption: "3D render, bottom" }
-          ],
-          [
             { src: "assets/img/quadcopter/pcb-top.jpg", caption: "Manufactured board" },
             { src: "assets/img/quadcopter/pcb-side.jpg", caption: "Manufactured board, rotated" }
           ]
