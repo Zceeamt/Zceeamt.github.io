@@ -62,8 +62,14 @@ window.PROJECTS = [
     ],
 
     hero: [
-      { src: "assets/img/quadcopter/drone-battery.jpg", alt: "The finished quadcopter from above, battery strapped on top", caption: "Top" },
-      { src: "assets/img/quadcopter/drone-top.jpg", alt: "The quadcopter from below, showing the motors and TPU guards", caption: "Underside" }
+      [
+        { src: "assets/img/quadcopter/drone-battery.jpg", alt: "The finished quadcopter from above, battery strapped on top", caption: "Top" },
+        { src: "assets/img/quadcopter/drone-top.jpg", alt: "The quadcopter from below, showing the motors and TPU guards", caption: "Underside" }
+      ],
+      [
+        { src: "assets/img/quadcopter/pcb-powered-2.png", alt: "Flight-controller PCB powered over USB-C with the red power LED and green MCU status LED illuminated", caption: "Firmware running from USB power: power LED (red) and MCU status LED (green)" },
+        { src: "assets/img/quadcopter/pcb-powered-1.png", alt: "Flight-controller PCB powered over USB-C with the red power LED illuminated", caption: "First power-up over USB-C: power LED (red)" }
+      ]
     ],
 
     sections: [
@@ -77,6 +83,9 @@ window.PROJECTS = [
         media: [
           [
             { src: "assets/img/quadcopter/schematic.jpg", caption: "Schematic" }
+          ],
+          [
+            { src: "assets/img/quadcopter/kicad-3d-top.jpg", caption: "KiCad 3D render: component side" }
           ],
           [
             { src: "assets/img/quadcopter/pcb-top.jpg", caption: "Manufactured board" },
@@ -122,10 +131,6 @@ window.PROJECTS = [
           "Outdoor flight test."
         ],
         media: [
-          [
-            { src: "assets/img/quadcopter/pcb-powered-1.png", alt: "Flight-controller PCB powered over USB-C with the red power LED illuminated", caption: "First power-up over USB-C: power LED (red)" },
-            { src: "assets/img/quadcopter/pcb-powered-2.png", alt: "Flight-controller PCB powered over USB-C with the red power LED and green MCU status LED illuminated", caption: "Firmware running from USB power: power LED (red) and MCU status LED (green)" }
-          ],
           [
             { src: "assets/img/quadcopter/betaflight-1.jpg", caption: "Betaflight recognising the board" },
             { src: "assets/img/quadcopter/betaflight-2.jpg", caption: "The model following the board's orientation" }
