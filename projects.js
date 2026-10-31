@@ -45,7 +45,7 @@ window.PROJECTS = [
     id: "quadcopter",
     file: "quadcopter.exe",
     title: "Custom quadcopter and flight controller",
-    year: "2026",
+    year: "Jul–Sep 2026",
     type: "Hardware",
     summary:
       "A bespoke four-layer STM32H743 flight controller, integrated into a custom airframe and validated in outdoor flight.",
@@ -55,7 +55,7 @@ window.PROJECTS = [
       "End-to-end development of a quadcopter around a bespoke flight controller. The four-layer board combines an STM32H743 processor with a six-axis inertial measurement unit and a barometric pressure sensor. Following fabrication and hardware bring-up, I flashed and configured the assembled PCB using Betaflight, integrated it into an airframe designed in Fusion 360 and completed a successful outdoor flight.",
 
     facts: [
-      ["Year", "2026"],
+      ["Dates", "Jul–Sep 2026"],
       ["Role", "Sole designer: electronics, mechanical design, assembly and validation"],
       ["Status", "Flight-tested"],
       ["Tools", "KiCad, Fusion 360, Betaflight, 3D printing"]
@@ -172,7 +172,7 @@ window.PROJECTS = [
     id: "esc",
     file: "bldc_esc.exe",
     title: "AM32 brushless motor speed controller PCB",
-    year: "2026",
+    year: "Oct 2026",
     type: "Hardware",
     summary:
       "A complex four-layer PCB implementation of the AM32 sensorless BLDC ESC reference design, centred on an STM32F051 and DRV8300 three-phase gate driver.",
@@ -182,7 +182,7 @@ window.PROJECTS = [
       "This project translates the AM32 reference schematic for a sensorless brushless-motor controller into a manufacturable four-layer PCB. My work focused on component placement, high-current power routing, mixed-signal separation, grounding and thermal management around the STM32F051, DRV8300 gate driver and six-MOSFET bridge.",
 
     facts: [
-      ["Year", "2026"],
+      ["Dates", "Oct 2026"],
       ["Role", "Four-layer PCB implementation and routing from the AM32 reference schematic"],
       ["Status", "PCB layout complete; design-only project"],
       ["Tools", "KiCad"]
@@ -254,7 +254,7 @@ window.PROJECTS = [
     id: "fpga-uart",
     file: "uart_tx.sv",
     title: "UART transmitter on an FPGA",
-    year: "2026",
+    year: "Oct 2026",
     type: "Digital hardware",
     summary:
       "A UART transmitter implemented in SystemVerilog on a Cyclone IV FPGA and verified against an external receiver in hardware.",
@@ -264,7 +264,7 @@ window.PROJECTS = [
       "A UART transmitter implemented in SystemVerilog without vendor IP and deployed on a DE0-Nano (Cyclone IV) FPGA. The design derives 9600 baud timing from the 50 MHz system clock and was verified in hardware against an independent microcontroller receiver, sustaining a continuous error-free data stream.",
 
     facts: [
-      ["Year", "2026"],
+      ["Dates", "Oct 2026"],
       ["Role", "Sole designer: RTL, synthesis, pin assignment and testing"],
       ["Status", "Working on hardware"],
       ["Tools", "SystemVerilog, Quartus Prime, DE0-Nano, Arduino"]
@@ -328,7 +328,7 @@ window.PROJECTS = [
     id: "power-supply",
     file: "dc_dc_supply.exe",
     title: "Dual-output DC-DC power supply",
-    year: "2026",
+    year: "Feb 2026",
     type: "Power electronics",
     summary:
       "A dual-output MC34063A power supply designed for a 5–12 V input range, with regulated 5 V and 12 V rails and discrete output-current limiting.",
@@ -338,7 +338,7 @@ window.PROJECTS = [
       "An intensive group design project responding to a customer specification for the power subsystem of an Antarctic weather station. Designed for a 5–12 V input range, the supply delivers regulated 5 V and 12 V rails with discrete short-circuit protection. I developed the circuit and Multisim model, then contributed to hardware bring-up, verification and the engineering tender.",
 
     facts: [
-      ["Year", "2026"],
+      ["Dates", "Feb 2026"],
       ["Role", "Circuit design, simulation and hardware validation within a group project"],
       ["Outcome", "Working hardware prototype and nine-document engineering tender"],
       ["Tools", "NI Multisim, multimeter and oscilloscope"]
@@ -414,8 +414,176 @@ window.PROJECTS = [
     links: [
       { label: "View on GitHub", url: "https://github.com/Zceeamt/dual-output-dc-dc-power-supply" }
     ]
-  }
-
+  },
+  {
+  "id": "robotics",
+  "file": "robotics.exe",
+  "title": "Robotic manufacturing and physical arm control",
+  "year": "Sep–Oct 2026",
+  "type": "Robotics",
+  "summary": "Three ABB IRB 120 manufacturing simulations in RoboDK, alongside MATLAB kinematics and Arduino control of a physical robot arm.",
+  "cover": "assets/img/robotics/robot-arm.png",
+  "intro": "A robotics project connecting industrial motion planning with physical robot control. Three RoboDK stations use an ABB IRB 120 for welding, deburring and milling. In parallel, a physical Arduino-controlled arm was used to investigate forward and inverse kinematics, servo calibration and Cartesian position control.",
+  "facts": [
+    [
+      "Dates",
+      "Sep–Oct 2026"
+    ],
+    [
+      "Scope",
+      "Industrial simulation and physical robot control"
+    ],
+    [
+      "Tools",
+      "RoboDK, MATLAB, Arduino"
+    ],
+    [
+      "Robot",
+      "ABB IRB 120 in simulation; servo-driven physical arm"
+    ]
+  ],
+  "hero": [
+    {
+      "src": "assets/img/robotics/robot-arm.png",
+      "alt": "Physical servo robot arm with Arduino electronics and potentiometer inputs on a laboratory bench",
+      "caption": "Physical robot arm, Arduino controller and potentiometer inputs"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Manufacturing motion planning",
+      "text": [
+        "Created separate RoboDK stations for welding, deburring and milling, each with its own tool, workpiece reference frame, targets and main program. Joint, linear and circular movements connect the operations through approach, retract and clearance paths.",
+        "The welding station follows straight, zigzag and semicircular seams with a defined torch TCP. The deburring station follows external edges and a circular rim, accounting for the 20 mm cutter radius and a small simulation clearance."
+      ]
+    },
+    {
+      "heading": "Milling toolpaths",
+      "text": [
+        "Developed paths for a rounded rectangular pocket, an oblong pocket, an open slot and a side circular hole. The operations use 2 mm depth increments, overlapping clearing passes and circular finishing movements where appropriate, with compensation for a 4 mm cutter radius.",
+        "The side-hole operation changes the tool orientation. Transitions between operations were checked for reachability, arm configuration and clearance. The station displays the supplied finished-part geometry; material removal is not animated."
+      ]
+    },
+    {
+      "heading": "Kinematics and physical control",
+      "text": [
+        "Used MATLAB forward kinematics to calculate gripper position from measured link dimensions and joint angles, then compared calculated positions with measurements of the physical arm. Inverse kinematics provided the joint angles required for specified Cartesian positions.",
+        "Programmed three joint servos and a gripper servo using Arduino. Calibration offsets align commands with reference positions, while three potentiometers provide requested Cartesian coordinates. Serial Monitor output supports comparison between the requested position, calculated joint commands and physical movement."
+      ]
+    },
+    {
+      "heading": "Engineering lessons",
+      "text": [
+        "The work highlighted how tool orientation and robot posture affect an otherwise reachable target. A valid target does not by itself establish that the transition from the previous target is clear.",
+        "Physical testing also showed why mathematical models depend on accurate link measurements, joint conventions and calibration. Mechanical play and measurement uncertainty affect how closely the gripper reaches its calculated position."
+      ]
+    }
+  ],
+  "skills": [
+    "RoboDK",
+    "MATLAB",
+    "Arduino",
+    "Forward kinematics",
+    "Inverse kinematics",
+    "Trajectory planning",
+    "Servo calibration",
+    "Hardware integration"
+  ],
+  "gallery": [],
+  "links": [{ "label": "View on GitHub", "url": "https://github.com/Zceeamt/robotic-manufacturing-and-arm-control" }]
+},
+{
+  "id": "stm32-pong",
+  "file": "stm32_pong.exe",
+  "title": "Hardware Pong on STM32",
+  "year": "Feb 2026",
+  "type": "Embedded",
+  "summary": "An embedded C Pong game with DMA-driven joystick acquisition and an SSD1306 OLED.",
+  "intro": "A real-time Pong implementation on an STM32F401RE, combining analogue joystick input, collision physics, scoring and a 128 × 64 OLED display.",
+  "facts": [
+    [
+      "Dates",
+      "Feb 2026"
+    ],
+    [
+      "Controller",
+      "STM32F401RE"
+    ],
+    [
+      "Tools",
+      "Embedded C, STM32 HAL"
+    ]
+  ],
+  "sections": [
+    {
+      "heading": "Responsive input and display",
+      "text": [
+        "Timer-triggered ADC acquisition with circular DMA samples both joystick channels while preserving a responsive game loop. The SSD1306 driver was ported to STM32 HAL, with frame-buffered I2C rendering for stable display updates.",
+        "The game combines joystick control with ball movement, collision detection and scoring, bringing input acquisition and display output together in one embedded application."
+      ]
+    }
+  ],
+  "skills": [
+    "Embedded C",
+    "STM32",
+    "ADC",
+    "DMA",
+    "I2C",
+    "Interrupts"
+  ],
+  "gallery": [],
+  "links": []
+},
+{
+  "id": "audio-descrambler",
+  "file": "audio_descrambler.exe",
+  "title": "FPGA real-time audio descrambler",
+  "year": "Dec 2025",
+  "type": "Digital",
+  "summary": "Team development of an FPGA audio signal path combining MATLAB filtering with external analogue hardware.",
+  "intro": "A team project integrating audio acquisition, FPGA signal processing and analogue reconstruction on an Intel Cyclone IV. My work covered ADC reference-design integration, filter development, FPGA pin assignments and the external conversion and filtering circuitry.",
+  "facts": [
+    [
+      "Dates",
+      "Dec 2025"
+    ],
+    [
+      "Platform",
+      "Cyclone IV FPGA"
+    ],
+    [
+      "Tools",
+      "MATLAB, Verilog, Quartus Prime"
+    ]
+  ],
+  "sections": [
+    {
+      "heading": "From audio samples to RTL",
+      "text": [
+        "Configured and tested the onboard ADC using FPGA reference designs. An 8 kHz digital band-stop filter was designed in MATLAB, with generated Verilog integrated into the Quartus design flow.",
+        "Completed FPGA pin assignments and integrated the digital processing stage with external hardware."
+      ]
+    },
+    {
+      "heading": "Analogue reconstruction and validation",
+      "text": [
+        "Built an external R–2R DAC and developed analogue anti-aliasing and reconstruction low-pass filters. Breadboard prototyping and oscilloscope measurements supported validation of the reconstructed output and investigation of integration problems.",
+        "The project connected mathematical filter design with RTL implementation and physical measurements, requiring the signal path to be tested in stages."
+      ]
+    }
+  ],
+  "skills": [
+    "MATLAB",
+    "Verilog",
+    "Quartus Prime",
+    "Signal processing",
+    "ADC interfacing",
+    "R–2R DAC",
+    "Oscilloscope"
+  ],
+  "gallery": [],
+  "links": []
+}
   /*
   ,{
     id: "my-project",                 // short, lowercase, no spaces (used in the link)

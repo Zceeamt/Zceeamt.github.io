@@ -1,2 +1,4 @@
 github-projects/
 .DS_Store
+
+/assets/files/robotics/*.rdk
