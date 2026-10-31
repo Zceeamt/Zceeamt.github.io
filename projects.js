@@ -452,6 +452,10 @@ window.PROJECTS = [
   "sections": [
     {
       "heading": "Manufacturing motion planning",
+      "media": [
+        {"video":"assets/video/robotics/welding.mp4","poster":"assets/img/robotics/welding.jpg","caption":"Welding paths — accelerated RoboDK simulation"},
+        {"video":"assets/video/robotics/deburring.mp4","poster":"assets/img/robotics/deburring.jpg","caption":"Edge and circular-rim deburring — accelerated RoboDK simulation"}
+      ],
       "text": [
         "Created separate RoboDK stations for welding, deburring and milling, each with its own tool, workpiece reference frame, targets and main program. Joint, linear and circular movements connect the operations through approach, retract and clearance paths.",
         "The welding station follows straight, zigzag and semicircular seams with a defined torch TCP. The deburring station follows external edges and a circular rim, accounting for the 20 mm cutter radius and a small simulation clearance."
@@ -459,6 +463,7 @@ window.PROJECTS = [
     },
     {
       "heading": "Milling toolpaths",
+      "media": [{"video":"assets/video/robotics/milling.mp4","poster":"assets/img/robotics/milling.jpg","caption":"Milling toolpath excerpt — accelerated RoboDK simulation"}],
       "text": [
         "Developed paths for a rounded rectangular pocket, an oblong pocket, an open slot and a side circular hole. The operations use 2 mm depth increments, overlapping clearing passes and circular finishing movements where appropriate, with compensation for a 4 mm cutter radius.",
         "The side-hole operation changes the tool orientation. Transitions between operations were checked for reachability, arm configuration and clearance. The station displays the supplied finished-part geometry; material removal is not animated."
