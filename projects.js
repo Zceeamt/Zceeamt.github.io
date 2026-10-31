@@ -169,160 +169,87 @@ window.PROJECTS = [
   },
 
   {
-    id: "esc",
-    file: "bldc_esc.exe",
-    title: "AM32 brushless motor speed controller PCB",
-    year: "Oct 2026",
-    type: "Hardware",
-    summary:
-      "A complex four-layer PCB implementation of the AM32 sensorless BLDC ESC reference design, centred on an STM32F051 and DRV8300 three-phase gate driver.",
-    cover: "assets/img/esc/render-top.jpg?v=20261016-2",
-
-    intro:
-      "This project translates the AM32 reference schematic for a sensorless brushless-motor controller into a manufacturable four-layer PCB. My work focused on component placement, high-current power routing, mixed-signal separation, grounding and thermal management around the STM32F051, DRV8300 gate driver and six-MOSFET bridge.",
-
-    facts: [
-      ["Dates", "Oct 2026"],
-      ["Role", "Four-layer PCB implementation and routing from the AM32 reference schematic"],
-      ["Status", "PCB layout complete; design-only project"],
-      ["Tools", "KiCad"]
+  "id": "robotics",
+  "file": "robotics.exe",
+  "title": "Robotic manufacturing and physical arm control",
+  "year": "Sep–Oct 2026",
+  "type": "Robotics",
+  "summary": "Three ABB IRB 120 manufacturing simulations in RoboDK, alongside MATLAB kinematics and Arduino control of a physical robot arm.",
+  "cover": "assets/img/robotics/robot-arm.png",
+  "intro": "A robotics project connecting industrial motion planning with physical robot control. Three RoboDK stations use an ABB IRB 120 for welding, deburring and milling. In parallel, a physical Arduino-controlled arm was used to investigate forward and inverse kinematics, servo calibration and Cartesian position control.",
+  "facts": [
+    [
+      "Dates",
+      "Sep–Oct 2026"
     ],
-
-    hero: [
-      { src: "assets/img/esc/render-top.jpg?v=20261016-2", alt: "3D render of the top side: six MOSFETs and the bulk capacitors", caption: "Top: power stage" },
-      { src: "assets/img/esc/render-bottom.jpg?v=20261016-2", alt: "3D render of the underside: microcontroller and gate driver", caption: "Bottom: control" }
+    [
+      "Scope",
+      "Industrial simulation and physical robot control"
     ],
-
-    sections: [
-      {
-        heading: "Power stage",
-        text: [
-          "The adopted AM32 architecture uses six PSMN5R2-60YL MOSFETs as three half-bridges, one per motor phase, with a DRV8300 providing the high-side and low-side gate drive.",
-          "Routing the switching stage required short gate paths, wide phase and battery pours, controlled separation from sensitive signals and close placement of seven 47 µF bulk capacitors to contain the bridge's pulsed current demand."
-        ]
-      },
-      {
-        heading: "Control and sensing",
-        text: [
-          "The reference circuitry infers rotor position from the zero-crossing of the undriven phase against a synthesised virtual neutral. These analogue paths were routed away from high-dv/dt switching nodes and returned to a stable ground reference.",
-          "The layout also accommodates a 1 mΩ shunt and INA180 current-sense amplifier, battery-voltage monitoring, separate 5 V and 3.3 V regulation, analogue-supply filtering, throttle, telemetry, SWD and dedicated test points."
-        ],
-        media: [
-          { src: "assets/img/esc/schematic.jpg", caption: "AM32 reference schematic used for the PCB implementation" }
-        ]
-      },
-      {
-        heading: "Four-layer layout",
-        text: [
-          "The power stage occupies the top side and the control circuitry the bottom, physically separating high-dv/dt switching nodes from the sensitive measurement paths. Battery and phase currents are carried in wide copper pours, with zone priorities ensuring clean isolation from the surrounding ground fill.",
-          "An array of 0.2 mm thermal vias beneath the gate driver's exposed pad conducts heat into the internal planes, and ground stitching maintains a low-impedance reference across all four layers. The design adheres to standard fabrication capabilities: 0.15 mm clearance and 0.3 mm vias on 0.6 mm pads."
-        ],
-        media: [
-          { src: "assets/img/esc/layout-top.jpg?v=20261016-2", caption: "Top layer (F.Cu)" },
-          { src: "assets/img/esc/layout-inner-1.jpg?v=20261016-2", caption: "Inner layer 1" },
-          { src: "assets/img/esc/layout-inner-2.jpg?v=20261016-2", caption: "Inner layer 2" },
-          { src: "assets/img/esc/layout-bottom.jpg?v=20261016-2", caption: "Bottom layer (B.Cu)" }
-        ]
-      }
+    [
+      "Tools",
+      "RoboDK, MATLAB, Arduino"
     ],
-
-    specs: [
-      ["Microcontroller", "STM32F051, Arm Cortex-M0"],
-      ["Gate driver", "TI DRV8300, three-phase"],
-      ["MOSFETs", "Six Nexperia PSMN5R2-60YL, 60 V"],
-      ["Commutation", "Sensorless, back-EMF with a virtual neutral"],
-      ["Current sensing", "1 mΩ low-side shunt and INA180"],
-      ["Voltage sensing", "Battery divider"],
-      ["Regulators", "LM3480, 5 V and 3.3 V"],
-      ["Bulk capacitance", "Seven 47 µF capacitors"],
-      ["Interfaces", "Throttle in, telemetry out, SWD"],
-      ["PCB", "Four layers, 0.15 mm clearance, 0.3/0.6 mm vias"]
-    ],
-
-    skills: [
-      "AM32 hardware architecture", "High-current PCB routing", "Mixed-signal placement",
-      "Four-layer stack-up", "Grounding", "Thermal-via design", "KiCad", "Design for manufacture"
-    ],
-
-    gallery: [],
-    links: [
-      { label: "View on GitHub", url: "https://github.com/Zceeamt/four-layer-bldc-esc" }
+    [
+      "Robot",
+      "ABB IRB 120 in simulation; servo-driven physical arm"
     ]
-  },
-
-  {
-    id: "fpga-uart",
-    file: "uart_tx.sv",
-    title: "UART transmitter on an FPGA",
-    year: "Oct 2026",
-    type: "Digital hardware",
-    summary:
-      "A UART transmitter implemented in SystemVerilog on a Cyclone IV FPGA and verified against an external receiver in hardware.",
-    cover: "assets/img/uart/cover.jpg",
-
-    intro:
-      "A UART transmitter implemented in SystemVerilog without vendor IP and deployed on a DE0-Nano (Cyclone IV) FPGA. The design derives 9600 baud timing from the 50 MHz system clock and was verified in hardware against an independent microcontroller receiver, sustaining a continuous error-free data stream.",
-
-    facts: [
-      ["Dates", "Oct 2026"],
-      ["Role", "Sole designer: RTL, synthesis, pin assignment and testing"],
-      ["Status", "Working on hardware"],
-      ["Tools", "SystemVerilog, Quartus Prime, DE0-Nano, Arduino"]
-    ],
-
-    hero: [
-      { src: "assets/img/uart/board-setup.jpg", alt: "DE0-Nano FPGA board wired to an Arduino Uno", caption: "Test setup: FPGA and Arduino" },
-      { src: "assets/img/uart/serial-monitor.jpg", alt: "Arduino Serial Monitor showing a continuous A to Z stream", caption: "The alphabet arriving at the Serial Monitor" }
-    ],
-
-    sections: [
-      {
-        heading: "How it works",
-        text: [
-          "A top-level module binds the RTL to the device pins, distributes the 50 MHz oscillator and drives the serial output onto a GPIO header. Reset is held inactive within the design rather than assigned to an external FPGA pin.",
-          "Within the transmitter, a parameterised counter divides the system clock to the bit period: approximately 5,208 cycles per bit at 9600 baud, a rate error below 0.01%. As the link is asynchronous, this precision alone keeps transmitter and receiver aligned across each frame.",
-          "Data is serialised in standard 8N1 framing: a start bit, eight data bits least significant first, and a stop bit. A finite-state machine sequences the ASCII characters A to Z, loading the next character on completion of each frame to produce a continuous test pattern."
-        ]
-      },
-      {
-        heading: "Synthesis and pin assignment",
-        text: [
-          "The design was synthesised and fitted in Intel Quartus Prime, with the clock and serial I/O constrained to the EP4CE22F17C6's package pins through the Pin Planner; reset remains held inactive in the RTL."
-        ],
-        media: [
-          { src: "assets/img/uart/pin-planner.jpg", caption: "Pin Planner for the EP4CE22F17C6" }
-        ]
-      },
-      {
-        heading: "Testing on hardware",
-        text: [
-          "Verification extended beyond simulation to hardware in the loop. The FPGA output was connected to an Arduino Uno sharing a common ground, which received at 9600 baud and relayed each byte to a host PC.",
-          "The character sequence was received continuously without corruption, confirming bit timing, frame structure and physical-layer integrity together."
-        ]
-      }
-    ],
-
-    specs: [
-      ["Board", "Terasic DE0-Nano"],
-      ["FPGA", "Intel Cyclone IV E, EP4CE22F17C6"],
-      ["Language", "SystemVerilog"],
-      ["Toolchain", "Intel Quartus Prime"],
-      ["System clock", "50 MHz"],
-      ["Baud rate", "9600"],
-      ["Frame", "8N1, least significant bit first"],
-      ["Test receiver", "Arduino Uno, SoftwareSerial"]
-    ],
-
-    skills: [
-      "SystemVerilog", "RTL design", "State machines", "Clock division",
-      "UART protocol", "Quartus Prime", "Pin assignment", "Hardware testing"
-    ],
-
-    gallery: [],
-    links: [
-      { label: "View on GitHub", url: "https://github.com/Zceeamt/fpga-uart-transmitter" }
-    ]
-  },
+  ],
+  "hero": [
+    {
+      "src": "assets/img/robotics/robot-arm.png",
+      "alt": "Physical servo robot arm with Arduino electronics and potentiometer inputs on a laboratory bench",
+      "caption": "Physical robot arm, Arduino controller and potentiometer inputs"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Manufacturing motion planning",
+      "media": [
+        {"video":"assets/video/robotics/welding.mp4","poster":"assets/img/robotics/welding.jpg","caption":"Welding paths — accelerated RoboDK simulation"},
+        {"video":"assets/video/robotics/deburring.mp4","poster":"assets/img/robotics/deburring.jpg","caption":"Edge and circular-rim deburring — accelerated RoboDK simulation"}
+      ],
+      "text": [
+        "Created separate RoboDK stations for welding, deburring and milling, each with its own tool, workpiece reference frame, targets and main program. Joint, linear and circular movements connect the operations through approach, retract and clearance paths.",
+        "The welding station follows straight, zigzag and semicircular seams with a defined torch TCP. The deburring station follows external edges and a circular rim, accounting for the 20 mm cutter radius and a small simulation clearance."
+      ]
+    },
+    {
+      "heading": "Milling toolpaths",
+      "media": [{"video":"assets/video/robotics/milling.mp4","poster":"assets/img/robotics/milling.jpg","caption":"Milling toolpath excerpt — accelerated RoboDK simulation"}],
+      "text": [
+        "Developed paths for a rounded rectangular pocket, an oblong pocket, an open slot and a side circular hole. The operations use 2 mm depth increments, overlapping clearing passes and circular finishing movements where appropriate, with compensation for a 4 mm cutter radius.",
+        "The side-hole operation changes the tool orientation. Transitions between operations were checked for reachability, arm configuration and clearance. The station displays the supplied finished-part geometry; material removal is not animated."
+      ]
+    },
+    {
+      "heading": "Kinematics and physical control",
+      "text": [
+        "Used MATLAB forward kinematics to calculate gripper position from measured link dimensions and joint angles, then compared calculated positions with measurements of the physical arm. Inverse kinematics provided the joint angles required for specified Cartesian positions.",
+        "Programmed three joint servos and a gripper servo using Arduino. Calibration offsets align commands with reference positions, while three potentiometers provide requested Cartesian coordinates. Serial Monitor output supports comparison between the requested position, calculated joint commands and physical movement."
+      ]
+    },
+    {
+      "heading": "Engineering lessons",
+      "text": [
+        "The work highlighted how tool orientation and robot posture affect an otherwise reachable target. A valid target does not by itself establish that the transition from the previous target is clear.",
+        "Physical testing also showed why mathematical models depend on accurate link measurements, joint conventions and calibration. Mechanical play and measurement uncertainty affect how closely the gripper reaches its calculated position."
+      ]
+    }
+  ],
+  "skills": [
+    "RoboDK",
+    "MATLAB",
+    "Arduino",
+    "Forward kinematics",
+    "Inverse kinematics",
+    "Trajectory planning",
+    "Servo calibration",
+    "Hardware integration"
+  ],
+  "gallery": [],
+  "links": [{ "label": "View on GitHub", "url": "https://github.com/Zceeamt/robotic-manufacturing-and-arm-control" }]
+},
 
   {
     id: "power-supply",
@@ -415,180 +342,163 @@ window.PROJECTS = [
       { label: "View on GitHub", url: "https://github.com/Zceeamt/dual-output-dc-dc-power-supply" }
     ]
   },
+
   {
-  "id": "robotics",
-  "file": "robotics.exe",
-  "title": "Robotic manufacturing and physical arm control",
-  "year": "Sep–Oct 2026",
-  "type": "Robotics",
-  "summary": "Three ABB IRB 120 manufacturing simulations in RoboDK, alongside MATLAB kinematics and Arduino control of a physical robot arm.",
-  "cover": "assets/img/robotics/robot-arm.png",
-  "intro": "A robotics project connecting industrial motion planning with physical robot control. Three RoboDK stations use an ABB IRB 120 for welding, deburring and milling. In parallel, a physical Arduino-controlled arm was used to investigate forward and inverse kinematics, servo calibration and Cartesian position control.",
-  "facts": [
-    [
-      "Dates",
-      "Sep–Oct 2026"
+    id: "fpga-uart",
+    file: "uart_tx.sv",
+    title: "UART transmitter on an FPGA",
+    year: "Oct 2026",
+    type: "Digital hardware",
+    summary:
+      "A UART transmitter implemented in SystemVerilog on a Cyclone IV FPGA and verified against an external receiver in hardware.",
+    cover: "assets/img/uart/cover.jpg",
+
+    intro:
+      "A UART transmitter implemented in SystemVerilog without vendor IP and deployed on a DE0-Nano (Cyclone IV) FPGA. The design derives 9600 baud timing from the 50 MHz system clock and was verified in hardware against an independent microcontroller receiver, sustaining a continuous error-free data stream.",
+
+    facts: [
+      ["Dates", "Oct 2026"],
+      ["Role", "Sole designer: RTL, synthesis, pin assignment and testing"],
+      ["Status", "Working on hardware"],
+      ["Tools", "SystemVerilog, Quartus Prime, DE0-Nano, Arduino"]
     ],
-    [
-      "Scope",
-      "Industrial simulation and physical robot control"
+
+    hero: [
+      { src: "assets/img/uart/board-setup.jpg", alt: "DE0-Nano FPGA board wired to an Arduino Uno", caption: "Test setup: FPGA and Arduino" },
+      { src: "assets/img/uart/serial-monitor.jpg", alt: "Arduino Serial Monitor showing a continuous A to Z stream", caption: "The alphabet arriving at the Serial Monitor" }
     ],
-    [
-      "Tools",
-      "RoboDK, MATLAB, Arduino"
+
+    sections: [
+      {
+        heading: "How it works",
+        text: [
+          "A top-level module binds the RTL to the device pins, distributes the 50 MHz oscillator and drives the serial output onto a GPIO header. Reset is held inactive within the design rather than assigned to an external FPGA pin.",
+          "Within the transmitter, a parameterised counter divides the system clock to the bit period: approximately 5,208 cycles per bit at 9600 baud, a rate error below 0.01%. As the link is asynchronous, this precision alone keeps transmitter and receiver aligned across each frame.",
+          "Data is serialised in standard 8N1 framing: a start bit, eight data bits least significant first, and a stop bit. A finite-state machine sequences the ASCII characters A to Z, loading the next character on completion of each frame to produce a continuous test pattern."
+        ]
+      },
+      {
+        heading: "Synthesis and pin assignment",
+        text: [
+          "The design was synthesised and fitted in Intel Quartus Prime, with the clock and serial I/O constrained to the EP4CE22F17C6's package pins through the Pin Planner; reset remains held inactive in the RTL."
+        ],
+        media: [
+          { src: "assets/img/uart/pin-planner.jpg", caption: "Pin Planner for the EP4CE22F17C6" }
+        ]
+      },
+      {
+        heading: "Testing on hardware",
+        text: [
+          "Verification extended beyond simulation to hardware in the loop. The FPGA output was connected to an Arduino Uno sharing a common ground, which received at 9600 baud and relayed each byte to a host PC.",
+          "The character sequence was received continuously without corruption, confirming bit timing, frame structure and physical-layer integrity together."
+        ]
+      }
     ],
-    [
-      "Robot",
-      "ABB IRB 120 in simulation; servo-driven physical arm"
+
+    specs: [
+      ["Board", "Terasic DE0-Nano"],
+      ["FPGA", "Intel Cyclone IV E, EP4CE22F17C6"],
+      ["Language", "SystemVerilog"],
+      ["Toolchain", "Intel Quartus Prime"],
+      ["System clock", "50 MHz"],
+      ["Baud rate", "9600"],
+      ["Frame", "8N1, least significant bit first"],
+      ["Test receiver", "Arduino Uno, SoftwareSerial"]
+    ],
+
+    skills: [
+      "SystemVerilog", "RTL design", "State machines", "Clock division",
+      "UART protocol", "Quartus Prime", "Pin assignment", "Hardware testing"
+    ],
+
+    gallery: [],
+    links: [
+      { label: "View on GitHub", url: "https://github.com/Zceeamt/fpga-uart-transmitter" }
     ]
-  ],
-  "hero": [
-    {
-      "src": "assets/img/robotics/robot-arm.png",
-      "alt": "Physical servo robot arm with Arduino electronics and potentiometer inputs on a laboratory bench",
-      "caption": "Physical robot arm, Arduino controller and potentiometer inputs"
-    }
-  ],
-  "sections": [
-    {
-      "heading": "Manufacturing motion planning",
-      "media": [
-        {"video":"assets/video/robotics/welding.mp4","poster":"assets/img/robotics/welding.jpg","caption":"Welding paths — accelerated RoboDK simulation"},
-        {"video":"assets/video/robotics/deburring.mp4","poster":"assets/img/robotics/deburring.jpg","caption":"Edge and circular-rim deburring — accelerated RoboDK simulation"}
-      ],
-      "text": [
-        "Created separate RoboDK stations for welding, deburring and milling, each with its own tool, workpiece reference frame, targets and main program. Joint, linear and circular movements connect the operations through approach, retract and clearance paths.",
-        "The welding station follows straight, zigzag and semicircular seams with a defined torch TCP. The deburring station follows external edges and a circular rim, accounting for the 20 mm cutter radius and a small simulation clearance."
-      ]
-    },
-    {
-      "heading": "Milling toolpaths",
-      "media": [{"video":"assets/video/robotics/milling.mp4","poster":"assets/img/robotics/milling.jpg","caption":"Milling toolpath excerpt — accelerated RoboDK simulation"}],
-      "text": [
-        "Developed paths for a rounded rectangular pocket, an oblong pocket, an open slot and a side circular hole. The operations use 2 mm depth increments, overlapping clearing passes and circular finishing movements where appropriate, with compensation for a 4 mm cutter radius.",
-        "The side-hole operation changes the tool orientation. Transitions between operations were checked for reachability, arm configuration and clearance. The station displays the supplied finished-part geometry; material removal is not animated."
-      ]
-    },
-    {
-      "heading": "Kinematics and physical control",
-      "text": [
-        "Used MATLAB forward kinematics to calculate gripper position from measured link dimensions and joint angles, then compared calculated positions with measurements of the physical arm. Inverse kinematics provided the joint angles required for specified Cartesian positions.",
-        "Programmed three joint servos and a gripper servo using Arduino. Calibration offsets align commands with reference positions, while three potentiometers provide requested Cartesian coordinates. Serial Monitor output supports comparison between the requested position, calculated joint commands and physical movement."
-      ]
-    },
-    {
-      "heading": "Engineering lessons",
-      "text": [
-        "The work highlighted how tool orientation and robot posture affect an otherwise reachable target. A valid target does not by itself establish that the transition from the previous target is clear.",
-        "Physical testing also showed why mathematical models depend on accurate link measurements, joint conventions and calibration. Mechanical play and measurement uncertainty affect how closely the gripper reaches its calculated position."
-      ]
-    }
-  ],
-  "skills": [
-    "RoboDK",
-    "MATLAB",
-    "Arduino",
-    "Forward kinematics",
-    "Inverse kinematics",
-    "Trajectory planning",
-    "Servo calibration",
-    "Hardware integration"
-  ],
-  "gallery": [],
-  "links": [{ "label": "View on GitHub", "url": "https://github.com/Zceeamt/robotic-manufacturing-and-arm-control" }]
-},
-{
-  "id": "stm32-pong",
-  "file": "stm32_pong.exe",
-  "title": "Hardware Pong on STM32",
-  "year": "Feb 2026",
-  "type": "Embedded",
-  "summary": "An embedded C Pong game with DMA-driven joystick acquisition and an SSD1306 OLED.",
-  "intro": "A real-time Pong implementation on an STM32F401RE, combining analogue joystick input, collision physics, scoring and a 128 × 64 OLED display.",
-  "facts": [
-    [
-      "Dates",
-      "Feb 2026"
+  },
+
+  {
+    id: "esc",
+    file: "bldc_esc.exe",
+    title: "AM32 brushless motor speed controller PCB",
+    year: "Oct 2026",
+    type: "Hardware",
+    summary:
+      "A complex four-layer PCB implementation of the AM32 sensorless BLDC ESC reference design, centred on an STM32F051 and DRV8300 three-phase gate driver.",
+    cover: "assets/img/esc/render-top.jpg?v=20261016-2",
+
+    intro:
+      "This project translates the AM32 reference schematic for a sensorless brushless-motor controller into a manufacturable four-layer PCB. My work focused on component placement, high-current power routing, mixed-signal separation, grounding and thermal management around the STM32F051, DRV8300 gate driver and six-MOSFET bridge.",
+
+    facts: [
+      ["Dates", "Oct 2026"],
+      ["Role", "Four-layer PCB implementation and routing from the AM32 reference schematic"],
+      ["Status", "PCB layout complete; design-only project"],
+      ["Tools", "KiCad"]
     ],
-    [
-      "Controller",
-      "STM32F401RE"
+
+    hero: [
+      { src: "assets/img/esc/render-top.jpg?v=20261016-2", alt: "3D render of the top side: six MOSFETs and the bulk capacitors", caption: "Top: power stage" },
+      { src: "assets/img/esc/render-bottom.jpg?v=20261016-2", alt: "3D render of the underside: microcontroller and gate driver", caption: "Bottom: control" }
     ],
-    [
-      "Tools",
-      "Embedded C, STM32 HAL"
+
+    sections: [
+      {
+        heading: "Power stage",
+        text: [
+          "The adopted AM32 architecture uses six PSMN5R2-60YL MOSFETs as three half-bridges, one per motor phase, with a DRV8300 providing the high-side and low-side gate drive.",
+          "Routing the switching stage required short gate paths, wide phase and battery pours, controlled separation from sensitive signals and close placement of seven 47 µF bulk capacitors to contain the bridge's pulsed current demand."
+        ]
+      },
+      {
+        heading: "Control and sensing",
+        text: [
+          "The reference circuitry infers rotor position from the zero-crossing of the undriven phase against a synthesised virtual neutral. These analogue paths were routed away from high-dv/dt switching nodes and returned to a stable ground reference.",
+          "The layout also accommodates a 1 mΩ shunt and INA180 current-sense amplifier, battery-voltage monitoring, separate 5 V and 3.3 V regulation, analogue-supply filtering, throttle, telemetry, SWD and dedicated test points."
+        ],
+        media: [
+          { src: "assets/img/esc/schematic.jpg", caption: "AM32 reference schematic used for the PCB implementation" }
+        ]
+      },
+      {
+        heading: "Four-layer layout",
+        text: [
+          "The power stage occupies the top side and the control circuitry the bottom, physically separating high-dv/dt switching nodes from the sensitive measurement paths. Battery and phase currents are carried in wide copper pours, with zone priorities ensuring clean isolation from the surrounding ground fill.",
+          "An array of 0.2 mm thermal vias beneath the gate driver's exposed pad conducts heat into the internal planes, and ground stitching maintains a low-impedance reference across all four layers. The design adheres to standard fabrication capabilities: 0.15 mm clearance and 0.3 mm vias on 0.6 mm pads."
+        ],
+        media: [
+          { src: "assets/img/esc/layout-top.jpg?v=20261016-2", caption: "Top layer (F.Cu)" },
+          { src: "assets/img/esc/layout-inner-1.jpg?v=20261016-2", caption: "Inner layer 1" },
+          { src: "assets/img/esc/layout-inner-2.jpg?v=20261016-2", caption: "Inner layer 2" },
+          { src: "assets/img/esc/layout-bottom.jpg?v=20261016-2", caption: "Bottom layer (B.Cu)" }
+        ]
+      }
+    ],
+
+    specs: [
+      ["Microcontroller", "STM32F051, Arm Cortex-M0"],
+      ["Gate driver", "TI DRV8300, three-phase"],
+      ["MOSFETs", "Six Nexperia PSMN5R2-60YL, 60 V"],
+      ["Commutation", "Sensorless, back-EMF with a virtual neutral"],
+      ["Current sensing", "1 mΩ low-side shunt and INA180"],
+      ["Voltage sensing", "Battery divider"],
+      ["Regulators", "LM3480, 5 V and 3.3 V"],
+      ["Bulk capacitance", "Seven 47 µF capacitors"],
+      ["Interfaces", "Throttle in, telemetry out, SWD"],
+      ["PCB", "Four layers, 0.15 mm clearance, 0.3/0.6 mm vias"]
+    ],
+
+    skills: [
+      "AM32 hardware architecture", "High-current PCB routing", "Mixed-signal placement",
+      "Four-layer stack-up", "Grounding", "Thermal-via design", "KiCad", "Design for manufacture"
+    ],
+
+    gallery: [],
+    links: [
+      { label: "View on GitHub", url: "https://github.com/Zceeamt/four-layer-bldc-esc" }
     ]
-  ],
-  "sections": [
-    {
-      "heading": "Responsive input and display",
-      "text": [
-        "Timer-triggered ADC acquisition with circular DMA samples both joystick channels while preserving a responsive game loop. The SSD1306 driver was ported to STM32 HAL, with frame-buffered I2C rendering for stable display updates.",
-        "The game combines joystick control with ball movement, collision detection and scoring, bringing input acquisition and display output together in one embedded application."
-      ]
-    }
-  ],
-  "skills": [
-    "Embedded C",
-    "STM32",
-    "ADC",
-    "DMA",
-    "I2C",
-    "Interrupts"
-  ],
-  "gallery": [],
-  "links": []
-},
-{
-  "id": "audio-descrambler",
-  "file": "audio_descrambler.exe",
-  "title": "FPGA real-time audio descrambler",
-  "year": "Dec 2025",
-  "type": "Digital",
-  "summary": "Team development of an FPGA audio signal path combining MATLAB filtering with external analogue hardware.",
-  "intro": "A team project integrating audio acquisition, FPGA signal processing and analogue reconstruction on an Intel Cyclone IV. My work covered ADC reference-design integration, filter development, FPGA pin assignments and the external conversion and filtering circuitry.",
-  "facts": [
-    [
-      "Dates",
-      "Dec 2025"
-    ],
-    [
-      "Platform",
-      "Cyclone IV FPGA"
-    ],
-    [
-      "Tools",
-      "MATLAB, Verilog, Quartus Prime"
-    ]
-  ],
-  "sections": [
-    {
-      "heading": "From audio samples to RTL",
-      "text": [
-        "Configured and tested the onboard ADC using FPGA reference designs. An 8 kHz digital band-stop filter was designed in MATLAB, with generated Verilog integrated into the Quartus design flow.",
-        "Completed FPGA pin assignments and integrated the digital processing stage with external hardware."
-      ]
-    },
-    {
-      "heading": "Analogue reconstruction and validation",
-      "text": [
-        "Built an external R–2R DAC and developed analogue anti-aliasing and reconstruction low-pass filters. Breadboard prototyping and oscilloscope measurements supported validation of the reconstructed output and investigation of integration problems.",
-        "The project connected mathematical filter design with RTL implementation and physical measurements, requiring the signal path to be tested in stages."
-      ]
-    }
-  ],
-  "skills": [
-    "MATLAB",
-    "Verilog",
-    "Quartus Prime",
-    "Signal processing",
-    "ADC interfacing",
-    "R–2R DAC",
-    "Oscilloscope"
-  ],
-  "gallery": [],
-  "links": []
-}
+  }
+
   /*
   ,{
     id: "my-project",                 // short, lowercase, no spaces (used in the link)
