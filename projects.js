@@ -67,8 +67,8 @@ window.PROJECTS = [
         { src: "assets/img/quadcopter/drone-top.jpg", alt: "The quadcopter from below, showing the motors and TPU guards", caption: "Underside" }
       ],
       [
-        { src: "assets/img/quadcopter/drone-frame-plate.jpg", alt: "Quadcopter with its pale 3D-printed frame plate fitted", caption: "Frame plate fitted" },
-        { src: "assets/img/quadcopter/drone-electronics-bay.jpg", alt: "Quadcopter showing the battery and electronics bay beneath the frame", caption: "Battery and electronics bay" }
+        { src: "assets/img/quadcopter/drone-electronics-bay.jpg", alt: "Quadcopter showing the battery and electronics bay beneath the frame", caption: "Battery and electronics bay" },
+        { src: "assets/img/quadcopter/drone-frame-plate.jpg", alt: "Quadcopter with its pale 3D-printed frame plate fitted", caption: "Frame plate fitted" }
       ],
       [
         { src: "assets/img/quadcopter/pcb-powered-2.png", alt: "Flight-controller PCB powered over USB-C with the red power LED and green MCU status LED illuminated", caption: "Firmware running from USB power: power LED (red) and MCU status LED (green)" },
